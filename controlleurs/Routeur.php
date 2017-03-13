@@ -1,5 +1,7 @@
 <?php
-class ControlleurRouteur
+namespace Blog\Controlleurs;
+use Blog\Classes;
+class Routeur
 {
     private $ctrlAccueil;
     private $ctrlPost;
@@ -7,9 +9,9 @@ class ControlleurRouteur
 
     public function __construct()
     {
-        $this->ctrlAccueil = new ControlleurAccueil;
-        $this->ctrlPost = new ControlleurPost;
-        $this->ctrlError = new ControlleurError;
+        $this->ctrlAccueil = new Accueil;
+        $this->ctrlPost = new Post;
+        $this->ctrlError = new Error;
     }
 
     public function routerRequete(){
@@ -22,24 +24,24 @@ class ControlleurRouteur
                             $this->ctrlPost->post($idPost);
                         }
                         else
-                        throw new ClassNotFoundException("Identifiant de billet non valide");
+                        throw new Classes\NotFoundException("Identifiant de billet non valide");
                     }
                     else
-                    throw new ClassNotFoundException("Identifiant de billet non défini");
+                    throw new Classes\NotFoundException("Identifiant de billet non défini");
                 }
                 else
-                throw new ClassNotFoundException("Action non valide");
+                throw new Classes\NotFoundException("Action non valide");
             }
             else {
                 $this->ctrlAccueil->accueil();  // action par défaut
             }
         }
-        catch (ClassNotFoundException $e) {
+        catch (NotFoundException $e) {
             $this->ctrlError->error($e->getMessage());
         }
         catch (Exception $e) {
             file_put_contents('errors.txt', "@ ".date('Y/m/d G:i:s')." ERROR : ".$e->getMessage()."\n", FILE_APPEND);
-            $this->ctrlError->error(ClassConfig::errorMsg);
+            $this->ctrlError->error(Classes\Config::errorMsg);
         }
     }
 }

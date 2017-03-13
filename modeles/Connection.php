@@ -1,23 +1,25 @@
 <?php
-class ModeleConnection
+namespace Blog\Modeles;
+use Blog\Classes;
+class Connection
 {
     private static $instance;
     private static $pdo;
 
     private function __construct()
     {
-        $type = ClassConfig::DB['type'];
-        $charset = ClassConfig::DB['charset'];
-        $host = ClassConfig::DB['host'];
-        $user = ClassConfig::DB['user'];
-        $pass = ClassConfig::DB['pass'];
-        $dbname = ClassConfig::DB['dbname'];
-        self::$pdo = new PDO("$type:host=$host;dbname=$dbname;charset=$charset", $user, $pass, array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
+        $type = Classes\Config::DB['type'];
+        $charset = Classes\Config::DB['charset'];
+        $host = Classes\Config::DB['host'];
+        $user = Classes\Config::DB['user'];
+        $pass = Classes\Config::DB['pass'];
+        $dbname = Classes\Config::DB['dbname'];
+        self::$pdo = new \PDO("$type:host=$host;dbname=$dbname;charset=$charset", $user, $pass, array(\PDO::ATTR_ERRMODE=>\PDO::ERRMODE_EXCEPTION));
     }
 
     public static function getInstance(){
         if(!self::$instance){
-            self::$instance = new ModeleConnection();
+            self::$instance = new Connection();
         }
         return self::$instance;
     }

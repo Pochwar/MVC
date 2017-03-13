@@ -1,5 +1,6 @@
 <?php
-class ClassConfig{
+namespace Blog\Classes;
+class Config{
     const DB = [
         'type' => 'mysql',
         'charset' => 'utf8',
