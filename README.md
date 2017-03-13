@@ -1,2 +1,2 @@
 #MVC
-projet de test d'architecture MVC
+Exercice d'architecture MVC
