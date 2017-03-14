@@ -5,14 +5,16 @@ class Vue
 {
     private $titre;
     private $fichier;
+    private $gabarit;
 
-    public function __construct($action){
+    public function __construct($action, $gabarit = "gabarit"){
         $this->fichier = BASE_DIR .'vues/vue'.$action.'.php';
+        $this->gabarit = BASE_DIR .'vues/'.$gabarit.'.php';
     }
 
     public function generer($donnees){
         $contenu = $this->genererFichier($this->fichier, $donnees);
-        $vue = $this->genererFichier('vues/vueGabarit.php',[
+        $vue = $this->genererFichier($this->gabarit,[
             'titre' => $this->titre,
             'contenu' => $contenu
         ]);
