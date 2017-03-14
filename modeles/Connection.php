@@ -1,6 +1,6 @@
 <?php
 namespace Blog\Modeles;
-use Blog\Classes;
+use Blog\Config;
 class Connection
 {
     private static $instance;
@@ -8,12 +8,12 @@ class Connection
 
     private function __construct()
     {
-        $type = Classes\Config::DB['type'];
-        $charset = Classes\Config::DB['charset'];
-        $host = Classes\Config::DB['host'];
-        $user = Classes\Config::DB['user'];
-        $pass = Classes\Config::DB['pass'];
-        $dbname = Classes\Config::DB['dbname'];
+        $type = Config\Configuration::get('DB', 'type');
+        $charset = Config\Configuration::get('DB', 'charset');
+        $host = Config\Configuration::get('DB', 'host');
+        $user = Config\Configuration::get('DB', 'user');
+        $pass = Config\Configuration::get('DB', 'pass');
+        $dbname = Config\Configuration::get('DB', 'dbname');
         self::$pdo = new \PDO("$type:host=$host;dbname=$dbname;charset=$charset", $user, $pass, array(\PDO::ATTR_ERRMODE=>\PDO::ERRMODE_EXCEPTION));
     }
 

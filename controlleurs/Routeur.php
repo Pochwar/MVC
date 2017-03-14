@@ -1,6 +1,7 @@
 <?php
 namespace Blog\Controlleurs;
 use Blog\Classes;
+use Blog\Config;
 class Routeur
 {
 
@@ -42,7 +43,7 @@ class Routeur
         }
         catch (\Exception $e) {
             file_put_contents('errors.txt', "@ ".date('Y/m/d G:i:s')." ERROR : ".$e->getMessage()."\n", FILE_APPEND);
-            Error::error(Classes\Config::errorMsg);
+            Error::error(Config\Configuration::get('error', 'msg'));
         }
     }
 }
