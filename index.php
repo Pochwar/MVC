@@ -8,6 +8,4 @@ use Blog\Classes;
 require_once 'classes/Loader.php';
 Classes\Loader::autoload();
 
-
-$routeur = new Controlleurs\Routeur;
-$routeur->routerRequete();
+Controlleurs\Routeur::routerRequete();

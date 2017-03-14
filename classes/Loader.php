@@ -14,7 +14,7 @@ class Loader
                return strtolower($match[1]) . $match[2];
            }, $classe);
 
-           include BASE_DIR . "$classe.php";
+           require_once (BASE_DIR . "$classe.php");
 
        });
    }

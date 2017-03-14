@@ -4,7 +4,7 @@ use Blog\Vues;
 use Blog\Modeles;
 class Accueil
 {
-    public function accueil()
+    public static function accueil()
     {
         $posts = Modeles\Posts::getAll();
         $vue = new Vues\Vue("Accueil");
