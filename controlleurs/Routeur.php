@@ -7,11 +7,18 @@ class Routeur
 
     public static function routerRequete(){
         try {
-            if (isset($_GET['action'])) {
-                //recupération des posts
-                if ($_GET['action'] == 'post') {
-                    if (isset($_GET['id'])) {
-                        $idPost = intval($_GET['id']);
+            //on détermine 'path' comme variable contenant tout ce qui se trouve apres l'url de base
+            $path = str_replace(Config\Configuration::get('url', 'base'), '', $_SERVER['REQUEST_URI']);
+            //Action par defaut, on affiche tous les posts sur la page d'accueil
+            if ($path == '') {
+                Accueil::accueil();
+            } else {
+                $path_param = explode('/', $path);
+                // var_dump($path_param);
+                // affichage d'un post
+                if ($path_param[0] == 'post') {
+                    if (isset($path_param[1])) {
+                        $idPost = intval($path_param[1]);
                         if ($idPost != 0){
                             Post::post($idPost);
                         }
@@ -20,8 +27,8 @@ class Routeur
                     } else {
                         throw new Classes\NotFoundException("Identifiant de billet non défini");
                     }
-                    // ajoute d'un commentaire
-                } elseif ($_GET['action'] == 'comment') {
+                    // ajout d'un commentaire
+                } elseif ($path_param[0] == 'comment') {
                     if (isset($_POST['postid'])) {
                         $postId = $_POST['postid'];
                         $content = $_POST['content'];
@@ -30,12 +37,10 @@ class Routeur
                     } else {
                         throw new Classes\NotFoundException("Identifiant de billet non défini");
                     }
+                    //Si l'acion n'est pas reconnue
                 } else {
                     throw new Classes\NotFoundException("Action non valide");
                 }
-            }
-            else {
-                Accueil::accueil();  // action par défaut
             }
         }
         catch (Classes\NotFoundException $e) {

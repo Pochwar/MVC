@@ -9,7 +9,7 @@
 <body>
     <div id="global">
         <header>
-            <a href="index.php"><h1 id="titreBlog">Mon Blog</h1></a>
+            <a href=""><h1 id="titreBlog">Mon Blog</h1></a>
         </header>
         <div id="contenu" class="error">
             <?php echo $contenu; ?>
