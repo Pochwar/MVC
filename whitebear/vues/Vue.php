@@ -1,7 +1,7 @@
 <?php
-namespace Blog\Vues;
-use Blog\Classes;
-use Blog\Config;
+namespace Whitebear\Vues;
+use Whitebear\Classes;
+use Whitebear\Config;
 class Vue
 {
     private $titre;

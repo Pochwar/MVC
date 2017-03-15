@@ -1,6 +1,6 @@
 <?php
-namespace Blog\Modeles;
-use Blog\Config;
+namespace Whitebear\Modeles;
+use Whitebear\Config;
 class Connection
 {
     private static $instance;

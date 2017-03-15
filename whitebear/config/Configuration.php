@@ -1,8 +1,11 @@
 <?php
-namespace Blog\Config;
+namespace Whitebear\Config;
 class Configuration
 {
     private static $param;
+    //chemin d'acces aux fichiers .ini
+    private static $ini_path = BASE_DIR."config/";
+
 
     public static function get($section, $nom, $defaultValue = null)
     {
@@ -21,12 +24,11 @@ class Configuration
     private static function getParam(){
         //si le tableau de parametre existe, on le renvoie
         if (self::$param != null) return self::$param;
-
         //sinon on va chercher dans le fichiers prod.ini
-        $file = BASE_DIR ."Config/prod.ini";
+        $file = self::$ini_path ."prod.ini";
         //si prod.ini n'existe pas, on va chercher dev.ini
         if(!file_exists($file)){
-            $file = BASE_DIR ."Config/dev.ini";
+            $file = self::$ini_path ."dev.ini";
         }
         //si dev.ini n'existe pas, on erenvoie une erreur
         if(!file_exists($file)){

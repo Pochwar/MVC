@@ -1,11 +1,12 @@
 <?php
 namespace Blog\Modeles;
 use Blog\Classes;
+use Whitebear\Modeles;
 class Commentaires
 {
     public static function getByPostId($idPost){
         if(is_int($idPost)){
-            $commentaire = Connection::query('SELECT id as id, creation_date as date, content as contenu, author as auteur
+            $commentaire = Modeles\Connection::query('SELECT id as id, creation_date as date, content as contenu, author as auteur
                 from comments
                 where post_id=:id',
                 [':id'=>$idPost]
@@ -17,7 +18,7 @@ class Commentaires
     }
 
     public static function add($author, $content, $idPost){
-        $commentaire = Connection::query(
+        $commentaire = Modeles\Connection::query(
             'INSERT INTO comments (creation_date, author, content, post_id)
             VALUES (:creation_date, :author, :content, :post_id)',
             [

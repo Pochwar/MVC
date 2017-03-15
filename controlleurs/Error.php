@@ -1,6 +1,6 @@
 <?php
 namespace Blog\Controlleurs;
-use Blog\Vues;
+use Whitebear\Vues;
 class Error
 {
     public static function error($msgErreur){

@@ -1,9 +1,10 @@
 <?php
-namespace Blog\Classes;
+namespace Whitebear\Classes;
 class Loader
 {
    public static function autoload()
    {
+
        spl_autoload_register(function ($classe) {
            // Premier caractère du namespace à retirer
            $classe = str_replace('Blog\\', '', $classe);
@@ -15,7 +16,6 @@ class Loader
            }, $classe);
 
            require_once (BASE_DIR . "$classe.php");
-
        });
    }
 }

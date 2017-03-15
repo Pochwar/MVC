@@ -1,10 +1,11 @@
 <?php
 namespace Blog\Modeles;
-use Blog\Classes;
+use Whitebear\Classes;
+use Whitebear\Modeles;
 class Posts
 {
     public static function getAll(){
-        $posts = Connection::query(
+        $posts = Modeles\Connection::query(
             'SELECT p.id AS id, count(c.post_id) AS nbcom, p.creation_date AS date, title AS titre, p.content AS contenu
             FROM posts p LEFT JOIN comments c
             ON  p.id = c.post_id
@@ -15,7 +16,7 @@ class Posts
     }
 
     public static function getById($idPost){
-        $post = Connection::query(
+        $post = Modeles\Connection::query(
             'SELECT id as id, creation_date as date, title as titre, content as contenu
             from posts where id=?',
             [$idPost]

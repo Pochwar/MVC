@@ -20,7 +20,7 @@ $this->titre = "Mon Blog de OUF ! " . $post['titre'];
   <p><?php echo htmlentities($commentaire['contenu']); ?></p>
   <hr/>
 <?php endforeach; ?>
-<form action="index.php?action=comment" method="post">
+<form action="comment" method="post">
     <input type="text" name="author" placeholder="Votre pseudo" required><br/>
     <textarea name="content" rows="8" cols="80" placeholder="Votre commentaire" required></textarea><br/>
     <input type="hidden" name="postid" value="<?php echo $post['id']; ?>">

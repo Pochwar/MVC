@@ -1,7 +1,7 @@
 <?php
 namespace Blog\Controlleurs;
-use Blog\Classes;
-use Blog\Config;
+use Whitebear\Classes;
+use Whitebear\Config;
 class Routeur
 {
 

@@ -1,4 +1,4 @@
 <?php
-namespace Blog\Classes;
+namespace Whitebear\Classes;
 class NotFoundException extends \Exception{}
  ?>
