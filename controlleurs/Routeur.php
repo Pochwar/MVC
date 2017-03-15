@@ -17,27 +17,26 @@ class Routeur
                 // var_dump($path_param);
                 // affichage d'un post
                 if ($path_param[0] == 'post') {
-                    if (isset($path_param[1])) {
-                        $idPost = intval($path_param[1]);
-                        if ($idPost != 0){
-                            Post::post($idPost);
-                        }
-                        else
+                    if (!isset($path_param[1])) {
+                        throw new Classes\NotFoundException("Identifiant de billet non défini");
+                    }
+                    $idPost = intval($path_param[1]);
+                    if ($idPost == 0){
                         throw new Classes\NotFoundException("Identifiant de billet non valide");
-                    } else {
-                        throw new Classes\NotFoundException("Identifiant de billet non défini");
                     }
+                    Post::post($idPost);
+
                     // ajout d'un commentaire
-                } elseif ($path_param[0] == 'comment') {
-                    if (isset($_POST['postid'])) {
-                        $postId = $_POST['postid'];
-                        $content = $_POST['content'];
-                        $author = $_POST['author'];
-                        Post::comment($author, $content, $postId);
-                    } else {
+                } else if ($path_param[0] == 'comment') {
+                    if (!isset($_POST['postid'])) {
                         throw new Classes\NotFoundException("Identifiant de billet non défini");
                     }
-                    //Si l'acion n'est pas reconnue
+                    $postId = $_POST['postid'];
+                    $content = $_POST['content'];
+                    $author = $_POST['author'];
+                    Post::comment($author, $content, $postId);
+
+                //Si l'acion n'est pas reconnue
                 } else {
                     throw new Classes\NotFoundException("Action non valide");
                 }
