@@ -7,7 +7,7 @@ class Post
     public static function post($id){
         $post = Modeles\Posts::getById($id);
         $commentaire = Modeles\Commentaires::getByPostId($id);
-        $vue = new Vues\Vue("post", "gabarit2");
+        $vue = new Vues\Vue("post");
         $vue->generer(['post' => $post, 'commentaire' => $commentaire]);
     }
 

@@ -1,6 +1,7 @@
 <?php
 $this->titre = "Mon Blog de OUF ! " . $post['titre'];
 
+
 ?>
 <article>
   <header>

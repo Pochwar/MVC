@@ -1,6 +1,7 @@
 <?php
 namespace Blog\Vues;
 use Blog\Classes;
+use Blog\Config;
 class Vue
 {
     private $titre;
@@ -16,6 +17,7 @@ class Vue
         $contenu = $this->genererFichier($this->fichier, $donnees);
         $vue = $this->genererFichier($this->gabarit,[
             'titre' => $this->titre,
+            'base_url' => Config\Configuration::get('url', 'base'),
             'contenu' => $contenu
         ]);
         echo $vue;

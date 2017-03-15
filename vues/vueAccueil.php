@@ -4,7 +4,7 @@ $this->titre = "Mon Blog de OUF !";
 foreach ($posts as $post): ?>
 <article>
     <header>
-        <a href="index.php?action=post&id=<?= $post['id'] ?>">
+        <a href="post/<?= $post['id'] ?>">
             <h1 class="titreBillet"><?= $post['titre'] ?></h1>
         </a>
         <time><?= $post['date'] ?></time>
